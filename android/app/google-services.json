@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "786329666218",
+    "firebase_url": "https://menuvi-6d38c.firebaseio.com",
+    "project_id": "menuvi-6d38c",
+    "storage_bucket": "menuvi-6d38c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786329666218:android:383c37deb806e82c",
+        "android_client_info": {
+          "package_name": "com.menuvi.menuvi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786329666218-24mcf6l8tg339o9dmlarr35dnjb0ojct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeoTL0xpjOvQYD9K4eU-MgmqZLcJ4nGVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786329666218-24mcf6l8tg339o9dmlarr35dnjb0ojct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
