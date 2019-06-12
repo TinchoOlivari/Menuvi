@@ -29,17 +29,32 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(
       children: <Widget>[
         Scaffold(
-          body: DailyMenu(),
-        ),
-        Positioned(
-          top: 0.0,
-          left:0.0,
-          right: 0.0,
-          child: AppBar(
-            title: Text('Menuvi'),
-            centerTitle: true,
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.pink[400],
+                  Colors.yellow[300],
+                ],
+              ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,              
+              children: <Widget>[
+                AppBar(
+                  title: Text(
+                    'Menuvi',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  centerTitle: true,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0.0,
+                ),
+                DailyMenu()
+              ],
+            ),
           ),
         ),
       ],
