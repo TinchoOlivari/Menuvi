@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:menuvi/color_loader_5.dart';
-import 'package:menuvi/dot_type.dart';
+import 'package:menuvi/widgets/color_loader_5.dart';
+import 'package:menuvi/widgets/dot_type.dart';
 
 String principal = '';
 String opcion = '';
@@ -62,9 +62,8 @@ class _DailyMenuState extends State<DailyMenu> {
 
   @override
   Widget build(BuildContext context) {
-    print(DateTime.now());
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
       child: Align(
         alignment: Alignment.center,
         child: menuCreator(),
@@ -112,7 +111,7 @@ menuCreator() {
             Container(
               margin: const EdgeInsets.only(left: 70.0, right: 70.0),
               child: Divider(
-                color: Colors.black,
+                color: Colors.grey,
                 height: 10,
               ),
             ),

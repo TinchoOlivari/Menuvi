@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:menuvi/dailyMenu.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return MaterialApp(
       title: 'Menuvi',
       home: MyHomePage(),
@@ -19,11 +25,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,              
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 AppBar(
                   title: Text(
@@ -52,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: Colors.transparent,
                   elevation: 0.0,
                 ),
-                DailyMenu()
+                DailyMenu(),
               ],
             ),
           ),
