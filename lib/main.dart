@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:menuvi/dailyMenu.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'dart:async';
 import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
@@ -48,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 AppBar(
                   title: Text(
                     'Menuvi',
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 29),
                   ),
                   centerTitle: true,
                   backgroundColor: Colors.transparent,

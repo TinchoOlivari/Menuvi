@@ -95,13 +95,11 @@ menuCreator() {
                     children: <Widget>[
                       Text(translateWeekday(),
                           style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.w300)),
+                              fontSize: 40, fontWeight: FontWeight.w300)),
                       Text(
                         fechaHoy,
                         style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w300,
-                            fontStyle: FontStyle.italic),
+                            fontSize: 25, fontWeight: FontWeight.w300),
                       ),
                     ],
                   ),
@@ -126,7 +124,7 @@ menuCreator() {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 45,
                         fontWeight: FontWeight.w500,
                       )),
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
@@ -156,8 +154,9 @@ menuCreator() {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 21,
+                        fontSize: 28,
                         fontWeight: FontWeight.w400,
+                        color: Colors.grey
                       )),
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                 );
@@ -185,7 +184,7 @@ menuCreator() {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 19,
+                        fontSize: 25,
                       ),
                     ),
                     Padding(padding: EdgeInsets.all(1)),
@@ -195,7 +194,7 @@ menuCreator() {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 19,
+                        fontSize: 25,
                       ),
                     ),
                     Padding(padding: EdgeInsets.all(1)),
@@ -205,7 +204,7 @@ menuCreator() {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 19,
+                        fontSize: 25,
                       ),
                     ),
                     Padding(padding: EdgeInsets.all(1)),
@@ -242,7 +241,7 @@ menuCreator() {
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 19,
+                      fontSize: 30,
                     ),
                   ),
                 );
