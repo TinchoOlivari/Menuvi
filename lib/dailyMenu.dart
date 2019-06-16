@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:menuvi/widgets/color_loader_5.dart';
-import 'package:menuvi/widgets/dot_type.dart';
+import 'package:menuvi/widgets/loading.dart';
 
 String principal = '';
 String opcion = '';
@@ -23,31 +22,6 @@ final Widget svgIconSopa = SvgPicture.asset(
   "lib/assets/Sopa.svg",
   width: 40,
 );
-
-translateWeekday() {
-  if (DateTime.now().weekday == 1) {
-    diaHoy = 'Lunes';
-  }
-  if (DateTime.now().weekday == 2) {
-    diaHoy = 'Martes';
-  }
-  if (DateTime.now().weekday == 3) {
-    diaHoy = 'Miercoles';
-  }
-  if (DateTime.now().weekday == 4) {
-    diaHoy = 'Jueves';
-  }
-  if (DateTime.now().weekday == 5) {
-    diaHoy = 'Viernes';
-  }
-  if (DateTime.now().weekday == 6) {
-    diaHoy = 'Sabado';
-  }
-  if (DateTime.now().weekday == 7) {
-    diaHoy = 'Domingo';
-  }
-  return diaHoy;
-}
 
 class DailyMenu extends StatefulWidget {
   @override
@@ -130,17 +104,7 @@ menuCreator() {
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                 );
               } else {
-                return Container(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
-                  child: ColorLoader5(
-                    dotOneColor: Colors.grey,
-                    dotTwoColor: Colors.grey,
-                    dotThreeColor: Colors.grey,
-                    dotType: DotType.circle,
-                    dotIcon: Icon(Icons.adjust),
-                    duration: Duration(milliseconds: 700),
-                  ),
-                );
+                return Loading();
               }
             }),
             FutureBuilder(
@@ -211,17 +175,7 @@ menuCreator() {
                   ],
                 );
               } else {
-                return Container(
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
-                  child: ColorLoader5(
-                    dotOneColor: Colors.grey,
-                    dotTwoColor: Colors.grey,
-                    dotThreeColor: Colors.grey,
-                    dotType: DotType.circle,
-                    dotIcon: Icon(Icons.adjust),
-                    duration: Duration(milliseconds: 700),
-                  ),
-                );
+                return Loading();
               }
             }),
             Container(
@@ -246,17 +200,7 @@ menuCreator() {
                   ),
                 );
               } else {
-                return Container(
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
-                  child: ColorLoader5(
-                    dotOneColor: Colors.grey,
-                    dotTwoColor: Colors.grey,
-                    dotThreeColor: Colors.grey,
-                    dotType: DotType.circle,
-                    dotIcon: Icon(Icons.adjust),
-                    duration: Duration(milliseconds: 700),
-                  ),
-                );
+                return Loading();
               }
             }),
           ],
@@ -264,4 +208,29 @@ menuCreator() {
       ),
     ),
   );
+}
+
+translateWeekday() {
+  if (DateTime.now().weekday == 1) {
+    diaHoy = 'Lunes';
+  }
+  if (DateTime.now().weekday == 2) {
+    diaHoy = 'Martes';
+  }
+  if (DateTime.now().weekday == 3) {
+    diaHoy = 'Miercoles';
+  }
+  if (DateTime.now().weekday == 4) {
+    diaHoy = 'Jueves';
+  }
+  if (DateTime.now().weekday == 5) {
+    diaHoy = 'Viernes';
+  }
+  if (DateTime.now().weekday == 6) {
+    diaHoy = 'Sabado';
+  }
+  if (DateTime.now().weekday == 7) {
+    diaHoy = 'Domingo';
+  }
+  return diaHoy;
 }
