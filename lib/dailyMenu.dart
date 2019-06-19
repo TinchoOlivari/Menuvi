@@ -9,7 +9,7 @@ String opcion = '';
 String p_1 = '';
 String p_2 = '';
 String p_3 = '';
-String sopa = '';
+String sopa = 'Sopa du macaco';
 
 String fechaHoy = new DateFormat('dd-MM').format(DateTime.now());
 String diaHoy = new DateFormat('EEEE').format(DateTime.now());
