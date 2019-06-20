@@ -17,53 +17,25 @@ class _MultiMenuState extends State<MultiMenu> {
 
   List<Menu> menus = new List<Menu>();
 
-  getMenus() async {
-    await databaseReference.then((DataSnapshot snapshot) {
-      Map<dynamic, dynamic> menuMap = snapshot.value;
-      menuMap.forEach((key, value) {
-        menus.add(Menu(key, value['principal']));
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return (Container(
       child: FutureBuilder(
         future: databaseReference.then(
           (DataSnapshot snapshot) {
-            Map<dynamic, dynamic> menuMap = snapshot.value;
-            menuMap.forEach((key, value) {
-              menus.add(Menu(key, value['principal']));
+            snapshot.value.forEach((key, value) {
+              menus.add(Menu(key, value['principal'], value['opcion'],
+                  value['p_1'], value['p_2'], value['p_3'], value['sopa']));
             });
+            menus.sort((a, b) => a.fecha.compareTo(b.fecha));
           },
         ),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return ListView.builder(
-            scrollDirection: Axis.horizontal,
-              itemCount: menus.length,
-              itemBuilder: (context, index) {
-                final items = menus[index];
-                return Container(
-                  padding: EdgeInsets.all(30),
-                  child: Material(
-                    color: Colors.white,
-                    elevation: 2.0,
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    child: Container(
-                      child: Text(items.principal,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 45,
-                            fontWeight: FontWeight.w500,
-                          )),
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                    ),
-                  ),
-                );
-              });
+          List<Widget> list = new List<Widget>();
+          for (var i = 0; i < menus.length; i++) {
+            list.add(new Text(menus[i].principal));
+          }
+          return new Column(children: list);
         },
       ),
     ));
@@ -73,6 +45,12 @@ class _MultiMenuState extends State<MultiMenu> {
 class Menu {
   String fecha;
   String principal;
+  String opcion;
+  String p_1;
+  String p_2;
+  String p_3;
+  String sopa;
 
-  Menu(this.fecha, this.principal);
+  Menu(this.fecha, this.principal, this.opcion, this.p_1, this.p_2, this.p_3,
+      this.sopa);
 }
