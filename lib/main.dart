@@ -28,9 +28,36 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(
       children: <Widget>[
         Scaffold(
-          body: MultiMenu()
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.pink[400],
+                  Colors.yellow[300],
+                ],
+              ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                AppBar(
+                  title: Text(
+                    'Menuvi',
+                    style: TextStyle(fontSize: 29),
+                  ),
+                  centerTitle: true,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0.0,
+                ),
+                MultiMenu(),
+              ],
+            ),
+          ),
         ),
       ],
     );
   }
 }
+

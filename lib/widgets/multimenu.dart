@@ -10,10 +10,7 @@ class MultiMenu extends StatefulWidget {
 }
 
 class _MultiMenuState extends State<MultiMenu> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  final PageController controller = new PageController();
 
   List<Menu> menus = new List<Menu>();
 
@@ -31,11 +28,13 @@ class _MultiMenuState extends State<MultiMenu> {
           },
         ),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          List<Widget> list = new List<Widget>();
+          List<Widget> list = List<Widget>();
           for (var i = 0; i < menus.length; i++) {
-            list.add(new Text(menus[i].principal));
+            list.add(Text(menus[i].principal));
           }
-          return new Column(children: list);
+          return PageView(
+            children: <Widget>[Column(children: list)],
+          );
         },
       ),
     ));
