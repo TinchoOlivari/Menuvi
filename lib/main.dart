@@ -23,7 +23,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -40,25 +39,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                AppBar(
-                  title: Text(
-                    'Menuvi',
-                    style: TextStyle(fontSize: 29),
+            child: Container(
+              padding: EdgeInsets.only(top: 25),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  AppBar(
+                    title: Text(
+                      'Menuvi',
+                      style: TextStyle(fontSize: 29),
+                    ),
+                    centerTitle: true,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0.0,
                   ),
-                  centerTitle: true,
-                  backgroundColor: Colors.transparent,
-                  elevation: 0.0,
-                ),
-                Expanded(
-                  child: Container(
-                    child: MultiMenu(),
-                  ),
-                )
-              ],
+                  Expanded(
+                    child: Container(
+                      child: MultiMenu(),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

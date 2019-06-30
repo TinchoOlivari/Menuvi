@@ -18,6 +18,8 @@ dependencies:
   flutter_svg: ^0.12.4
   cupertino_icons: ^0.1.2
 
+  page_indicator: ^0.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
