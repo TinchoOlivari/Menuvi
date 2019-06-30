@@ -40,15 +40,19 @@ class _MultiMenuState extends State<MultiMenu> {
                 key == fMiercoles ||
                 key == fJueves ||
                 key == fViernes) {
-              menus.add(Menu(
-                  key,
-                  value['dia'],
-                  value['principal'],
-                  value['opcion'],
-                  value['p_1'],
-                  value['p_2'],
-                  value['p_3'],
-                  value['sopa']));
+              if (value['isNull'] == true) {
+                menus.add(Menu.isNull(key, true));
+              } else {
+                menus.add(Menu(
+                    key,
+                    value['dia'],
+                    value['principal'],
+                    value['opcion'],
+                    value['p_1'],
+                    value['p_2'],
+                    value['p_3'],
+                    value['sopa']));
+              }
             }
           });
           menus.sort((a, b) => a.fecha.compareTo(b.fecha));
@@ -57,109 +61,147 @@ class _MultiMenuState extends State<MultiMenu> {
         List<Widget> list = List<Widget>();
         if (snapshot.connectionState == ConnectionState.done) {
           for (var i = 0; i < menus.length; i++) {
-            list.add(Container(
-              padding: EdgeInsets.all(20),
-              child: Material(
-                color: Colors.white,
-                elevation: 2.0,
-                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        child: Text(menus[i].dia,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 25,
-                            )),
-                      ),
-                      Container(
-                        child: Text(menus[i].fecha,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 25,
-                            )),
-                      ),
-                      Container(
-                        child: Text(menus[i].principal,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 45,
-                              fontWeight: FontWeight.w500,
-                            )),
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                      ),
-                      Container(
-                        child: Text(
-                          menus[i].opcion,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey),
+            if(menus[i].isNull == true){
+              list.add(Container(
+                padding: EdgeInsets.all(20),
+                child: Material(
+                  color: Colors.white,
+                  elevation: 2.0,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                          child: Text(menus[i].fecha,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 25,
+                              )),
                         ),
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                      ),
-                      Column(
-                        children: <Widget>[
-                          Padding(padding: EdgeInsets.all(1)),
-                          Text(
-                            menus[i].p_1,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 25,
-                            ),
-                          ),
-                          Text(
-                            menus[i].p_2,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 25,
-                            ),
-                          ),
-                          Padding(padding: EdgeInsets.all(1)),
-                          Text(
-                            menus[i].p_3,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 25,
-                            ),
-                          ),
-                          Padding(padding: EdgeInsets.all(1)),
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 20),
-                        child: Text(
-                          "Sopa de " + menus[i].sopa.toLowerCase(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 30,
-                          ),
+                        Container(
+                          child: Text("Hoy no hay menu lince",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 45,
+                                fontWeight: FontWeight.w500,
+                              )),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ));
+              ));
+            } else {
+              list.add(Container(
+                padding: EdgeInsets.all(20),
+                child: Material(
+                  color: Colors.white,
+                  elevation: 2.0,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                          child: Text(menus[i].dia,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 25,
+                              )),
+                        ),
+                        Container(
+                          child: Text(menus[i].fecha,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 25,
+                              )),
+                        ),
+                        Container(
+                          child: Text(menus[i].principal,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 45,
+                                fontWeight: FontWeight.w500,
+                              )),
+                          padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                        ),
+                        Container(
+                          child: Text(
+                            menus[i].opcion,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey),
+                          ),
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Padding(padding: EdgeInsets.all(1)),
+                            Text(
+                              menus[i].p_1,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                            ),
+                            Text(
+                              menus[i].p_2,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.all(1)),
+                            Text(
+                              menus[i].p_3,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.all(1)),
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            "Sopa de " + menus[i].sopa.toLowerCase(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ));
+            }
           }
-          initialPage();
+          //initialPage();
           return Container(
             child: PageIndicatorContainer(
               pageView: PageView(
@@ -175,7 +217,7 @@ class _MultiMenuState extends State<MultiMenu> {
               shape: IndicatorShape.circle(size: 12),
             ),
           );
-        } else {
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
         }
       }),
@@ -191,13 +233,7 @@ initialPage() async {
 }
 
 adjustDate() async {
-  if (hoy.weekday == 0) {
-    fLunes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
-    fMartes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
-    fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 3)));
-    fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 4)));
-    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 5)));
-  } else if (hoy.weekday == 1) {
+  if (hoy.weekday == 1) {
     fLunes = await DateFormat('dd-MM').format(hoy);
     fMartes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
     fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
@@ -235,6 +271,12 @@ adjustDate() async {
     fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 4)));
     fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 5)));
     fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 6)));
+  } else if (hoy.weekday == 7) {
+    fLunes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
+    fMartes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
+    fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 3)));
+    fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 4)));
+    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 5)));
   }
   //En este punto tenes todos las fechas que hay que mostrar
   //Lo que sigue es iterar todos los menus y buscarlos
@@ -250,7 +292,10 @@ class Menu {
   String p_2;
   String p_3;
   String sopa;
+  bool isNull = false;
 
   Menu(this.fecha, this.dia, this.principal, this.opcion, this.p_1, this.p_2,
       this.p_3, this.sopa);
+  
+  Menu.isNull(this.fecha, this.isNull);
 }
