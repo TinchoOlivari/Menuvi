@@ -1,18 +1,11 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:math';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:menuvi/widgets/loading.dart';
-
-Future<DataSnapshot> databaseReference =
-    FirebaseDatabase.instance.reference().once();
-final _controller = PageController();
-List<Menu> menus = List<Menu>();
-
-String hoyFecha = DateFormat('dd-MM').format(DateTime.now());
-String diaHoy = toBeginningOfSentenceCase(DateFormat('EEEE','es_ES').format(DateTime.now()));
+import 'package:menuvi/widgets/dots_indicator.dart';
+import 'package:menuvi/widgets/menu_class.dart';
+import 'package:menuvi/widgets/adjust_date.dart';
 
 final Widget svgIconMagdalena = SvgPicture.asset(
   "lib/assets/Magdalena.svg",
@@ -23,13 +16,6 @@ final Widget svgIconSopa = SvgPicture.asset(
   width: 40,
 );
 
-final DateTime hoy = DateTime.now();
-String fLunes;
-String fMartes;
-String fMiercoles;
-String fJueves;
-String fViernes;
-
 class MultiMenu extends StatefulWidget {
   @override
   _MultiMenuState createState() => _MultiMenuState();
@@ -39,12 +25,25 @@ class _MultiMenuState extends State<MultiMenu> {
   static const _kDuration = const Duration(milliseconds: 300);
   static const _kCurve = Curves.ease;
 
+  final _controller = PageController();
+
   @override
   void initState() {
     super.initState();
   }
+  
   @override
   Widget build(BuildContext context) {
+    Future<DataSnapshot> databaseReference =
+    FirebaseDatabase.instance.reference().once();
+
+    List<Menu> menus = List<Menu>();
+    initialPage() async {
+      var indexado = await menus
+          .indexOf(menus.where((menus) => menus.fecha == hoyFecha).first);
+      await _controller.jumpToPage(indexado);
+    }
+
     initializeDateFormatting("es_AR", null);
     adjustDate();
     return (Container(
@@ -267,8 +266,11 @@ class _MultiMenuState extends State<MultiMenu> {
                 ),
               ));
             }
+            if (menus[i].fecha == hoyFecha){
+              initialPage();
+            }
           }
-          if (list.length == 0){
+          if (list.isEmpty == true) {
             list.add(Container(
               padding: EdgeInsets.fromLTRB(25, 25, 25, 5),
               child: Material(
@@ -304,8 +306,7 @@ class _MultiMenuState extends State<MultiMenu> {
                         ],
                       ),
                       Container(
-                        margin:
-                        const EdgeInsets.only(left: 70.0, right: 70.0),
+                        margin: const EdgeInsets.only(left: 70.0, right: 70.0),
                         child: Divider(
                           color: Colors.grey,
                           height: 10,
@@ -331,8 +332,6 @@ class _MultiMenuState extends State<MultiMenu> {
                 ),
               ),
             ));
-          } else {
-            initialPage();
           }
           return Column(
             children: <Widget>[
@@ -372,125 +371,3 @@ class _MultiMenuState extends State<MultiMenu> {
   }
 }
 
-initialPage() async {
-  var indexado = await menus
-      .indexOf(menus.where((menus) => menus.fecha == hoyFecha).first);
-  await _controller.jumpToPage(indexado);
-}
-
-adjustDate() async {
-  if (hoy.weekday == 1) {
-    fLunes = await DateFormat('dd-MM').format(hoy);
-    fMartes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
-    fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
-    fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 3)));
-    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 4)));
-  } else if (hoy.weekday == 2) {
-    fLunes = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 1)));
-    fMartes = await DateFormat('dd-MM').format(hoy);
-    fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
-    fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
-    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 3)));
-  } else if (hoy.weekday == 3) {
-    fLunes = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 2)));
-    fMartes = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 1)));
-    fMiercoles = await DateFormat('dd-MM').format(hoy);
-    fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
-    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
-  } else if (hoy.weekday == 4) {
-    fLunes = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 3)));
-    fMartes = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 2)));
-    fMiercoles =
-        await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 1)));
-    fJueves = await DateFormat('dd-MM').format(hoy);
-    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
-  } else if (hoy.weekday == 5) {
-    fLunes = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 4)));
-    fMartes = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 3)));
-    fMiercoles =
-        await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 2)));
-    fJueves = await DateFormat('dd-MM').format(hoy.subtract(Duration(days: 1)));
-    fViernes = await DateFormat('dd-MM').format(hoy);
-  } else if (hoy.weekday == 6) {
-    fLunes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
-    fMartes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 3)));
-    fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 4)));
-    fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 5)));
-    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 6)));
-  } else if (hoy.weekday == 7) {
-    fLunes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 1)));
-    fMartes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 2)));
-    fMiercoles = await DateFormat('dd-MM').format(hoy.add(Duration(days: 3)));
-    fJueves = await DateFormat('dd-MM').format(hoy.add(Duration(days: 4)));
-    fViernes = await DateFormat('dd-MM').format(hoy.add(Duration(days: 5)));
-  }
-  //En este punto tenes todos las fechas que hay que mostrar
-  //Lo que sigue es iterar todos los menus y buscarlos
-  //Cuando haya coincidencia, se lo agrega a List menus
-}
-
-class Menu {
-  String fecha;
-  String dia;
-  String principal;
-  String opcion;
-  String p_1;
-  String p_2;
-  String p_3;
-  String sopa;
-  bool isNull = false;
-
-  Menu(this.fecha, this.dia, this.principal, this.opcion, this.p_1, this.p_2,
-      this.p_3, this.sopa);
-
-  Menu.isNull(this.fecha, this.dia, this.isNull);
-}
-
-class DotsIndicator extends AnimatedWidget {
-  DotsIndicator({
-    this.controller,
-    this.itemCount,
-    this.onPageSelected,
-  }) : super(listenable: controller);
-  final PageController controller;
-  final int itemCount;
-  final ValueChanged<int> onPageSelected;
-  final Color color = Colors.white;
-  static const double _kDotSize = 8.0;
-  static const double _kMaxZoom = 1.7;
-  static const double _kDotSpacing = 25.0;
-
-  Widget _buildDot(int index) {
-    double selectedness = Curves.easeOut.transform(
-      max(
-        0.0,
-        1.0 - ((controller.page ?? controller.initialPage) - index).abs(),
-      ),
-    );
-    double zoom = 1.0 + (_kMaxZoom - 1.0) * selectedness;
-    return Container(
-      height: 20,
-      width: _kDotSpacing,
-      child: Center(
-        child: Material(
-          color: color,
-          type: MaterialType.circle,
-          child: Container(
-            width: _kDotSize * zoom,
-            height: _kDotSize * zoom,
-            child: InkWell(
-              onTap: () => onPageSelected(index),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List<Widget>.generate(itemCount, _buildDot),
-    );
-  }
-}
