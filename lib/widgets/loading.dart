@@ -6,14 +6,13 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: ColorLoader5(
-        dotOneColor: Colors.grey,
-        dotTwoColor: Colors.grey,
-        dotThreeColor: Colors.grey,
+        dotOneColor: Colors.white,
+        dotTwoColor: Colors.white,
+        dotThreeColor: Colors.white,
         dotType: DotType.circle,
-        dotIcon: Icon(Icons.adjust),
-        duration: Duration(milliseconds: 700),
+        duration: Duration(milliseconds: 1000),
       ),
     );
   }
