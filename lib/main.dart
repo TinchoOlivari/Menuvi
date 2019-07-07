@@ -22,7 +22,16 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+  AnimationController rotationController;
+
+  @override
+  void initState() {
+    rotationController = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -43,25 +52,32 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(fontSize: 29),
                       ),
                       actions: <Widget>[
-                        IconButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          icon: new Icon(Icons.refresh),
+                        Container(
+                          child: RotationTransition(
+                            turns: Tween(begin: 0.0, end: 1.0)
+                                .animate(rotationController),
+                            alignment: Alignment.center,
+                            child: IconButton(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              icon: Icon(Icons.refresh),
+                              iconSize: 29,
+                              color: Colors.white,
+                              alignment: Alignment.center,
+                              onPressed: () {
+                                setState(() {
+                                  rotationController.forward(from: 0.0);
+                                  MultiMenu();
+                                });
+                              },
+                            ),
+                          ),
                           padding: EdgeInsets.only(right: 25),
-                          iconSize: 29,
-                          color: Colors.white,
-                          alignment: Alignment.center,
-                          onPressed: () {
-                            setState(() {
-                              MultiMenu();
-                            });
-                          },
                         ),
                       ],
                       centerTitle: true,
                       backgroundColor: Colors.transparent,
                       elevation: 0.0,
-
                     ),
                     Expanded(
                       child: Container(
