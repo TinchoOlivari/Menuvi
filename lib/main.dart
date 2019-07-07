@@ -42,9 +42,26 @@ class _MyHomePageState extends State<MyHomePage> {
                         'Menuvi',
                         style: TextStyle(fontSize: 29),
                       ),
+                      actions: <Widget>[
+                        IconButton(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          icon: new Icon(Icons.refresh),
+                          padding: EdgeInsets.only(right: 25),
+                          iconSize: 29,
+                          color: Colors.white,
+                          alignment: Alignment.center,
+                          onPressed: () {
+                            setState(() {
+                              MultiMenu();
+                            });
+                          },
+                        ),
+                      ],
                       centerTitle: true,
                       backgroundColor: Colors.transparent,
                       elevation: 0.0,
+
                     ),
                     Expanded(
                       child: Container(
@@ -86,6 +103,7 @@ class ShapesPainter extends CustomPainter {
     path.close();
     canvas.drawPath(path, paint);
   }
+
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
