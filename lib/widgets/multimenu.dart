@@ -6,6 +6,7 @@ import 'package:menuvi/widgets/loading.dart';
 import 'package:menuvi/widgets/dots_indicator.dart';
 import 'package:menuvi/widgets/menu_class.dart';
 import 'package:menuvi/widgets/adjust_date.dart';
+import 'dart:io';
 
 final Widget svgIconMagdalena = SvgPicture.asset(
   "lib/assets/Magdalena.svg",
@@ -30,22 +31,25 @@ class _MultiMenuState extends State<MultiMenu> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting("es_AR", null);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     Future<DataSnapshot> databaseReference =
-    FirebaseDatabase.instance.reference().once();
+        FirebaseDatabase.instance.reference().once();
 
     List<Menu> menus = List<Menu>();
+    List<Widget> list = List<Widget>();
+
     initialPage() async {
       var indexado = await menus
           .indexOf(menus.where((menus) => menus.fecha == hoyFecha).first);
       await _controller.jumpToPage(indexado);
     }
 
-    initializeDateFormatting("es_AR", null);
     adjustDate();
+
     return (Container(
       child: FutureBuilder(future: databaseReference.then(
         (DataSnapshot snapshot) {
@@ -73,7 +77,6 @@ class _MultiMenuState extends State<MultiMenu> {
           menus.sort((a, b) => a.fecha.compareTo(b.fecha));
         },
       ), builder: (BuildContext context, AsyncSnapshot snapshot) {
-        List<Widget> list = List<Widget>();
         if (snapshot.connectionState == ConnectionState.done) {
           for (var i = 0; i < menus.length; i++) {
             if (menus[i].isNull == true) {
@@ -266,7 +269,7 @@ class _MultiMenuState extends State<MultiMenu> {
                 ),
               ));
             }
-            if (menus[i].fecha == hoyFecha){
+            if (menus[i].fecha == hoyFecha) {
               initialPage();
             }
           }
@@ -364,6 +367,7 @@ class _MultiMenuState extends State<MultiMenu> {
             ],
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
+          checkConnection(context);
           return Loading();
         }
       }),
@@ -371,3 +375,15 @@ class _MultiMenuState extends State<MultiMenu> {
   }
 }
 
+checkConnection(context) async {
+  try {
+    final result = await InternetAddress.lookup('google.com');
+    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+      return Loading();
+    }
+  } on SocketException catch (_) {
+    final snackBar =
+        SnackBar(content: Text('Verifica tu conexion a internet!',style: TextStyle(fontSize: 17),));
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
+}
