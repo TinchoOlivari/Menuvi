@@ -1,13 +1,14 @@
-# ![](https://raw.githubusercontent.com/TinchoOlivari/Menuvi/master/lib/assets/logo_M.png =40x)enuvi  
+# Menuvi  
 
-Menuvi es una aplicacion para conocer el menú de almuerzo del comedor del Instituto Tecnico Salesiano Villada. Es desarrollada en **Flutter** y principalmente apunta a dispositivos *Android*. 
+![](https://firebasestorage.googleapis.com/v0/b/menuvi-6d38c.appspot.com/o/g1080.png?alt=media&token=04d52313-0675-4cec-af53-3a367b9be4f7 )
 
+Menuvi es una aplicacion para conocer el menÃº de almuerzo del comedor del Instituto Tecnico Salesiano Villada. Es desarrollada en **Flutter** y principalmente apunta a dispositivos *Android*. 
 
 # Tecnologias
 
 | Nombre | Descripcion |
 | ------ | ------ |
-| Flutter |Es un SDK de desarrollo de aplicaciones móviles |
+| Flutter |Es un SDK de desarrollo de aplicaciones mÃ³viles |
 | Firebase |Plataforma para el desarrollo de aplicaciones. En este proyecto se utilizo Database |
 | Flutter_svg| Libreria para renderizar SVG en Flutter |
 
@@ -15,7 +16,7 @@ Menuvi es una aplicacion para conocer el menú de almuerzo del comedor del Instit
 
 #  Capturas
 
-![](https://firebasestorage.googleapis.com/v0/b/menuvi-6d38c.appspot.com/o/ezgif.com-video-to-gif.gif?alt=media&token=52da65d4-b97c-4e13-a540-fc15a1a47289 =300x)
+![](https://firebasestorage.googleapis.com/v0/b/menuvi-6d38c.appspot.com/o/ezgif.com-video-to-gif.gif?alt=media&token=52da65d4-b97c-4e13-a540-fc15a1a47289)
 
 # Desarrollador
 
