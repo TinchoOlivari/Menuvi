@@ -16,7 +16,7 @@ Menuvi es una aplicacion para conocer el menú de almuerzo del comedor del Insti
 
 #  Capturas
 
-![](https://firebasestorage.googleapis.com/v0/b/menuvi-6d38c.appspot.com/o/ezgif.com-video-to-gif.gif?alt=media&token=52da65d4-b97c-4e13-a540-fc15a1a47289)
+![](https://firebasestorage.googleapis.com/v0/b/menuvi-6d38c.appspot.com/o/ezgif.com-resize.gif?alt=media&token=b7f89af3-ba6d-4723-b174-08b8be369599)
 
 # Desarrollador
 
