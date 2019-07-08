@@ -1,6 +1,6 @@
 # Menuvi  
 
-![](https://firebasestorage.googleapis.com/v0/b/menuvi-6d38c.appspot.com/o/g1080.png?alt=media&token=04d52313-0675-4cec-af53-3a367b9be4f7 )
+![](https://firebasestorage.googleapis.com/v0/b/menuvi-6d38c.appspot.com/o/g1080.png?alt=media&token=79965398-4226-47d8-9b45-9b9891011f48)
 
 Menuvi es una aplicacion para conocer el menú de almuerzo del comedor del Instituto Tecnico Salesiano Villada. Es desarrollada en **Flutter** y principalmente apunta a dispositivos *Android*. 
 
